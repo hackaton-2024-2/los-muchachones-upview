@@ -10,5 +10,9 @@
   "routes": [
     { "handle": "filesystem" },
     { "src": "/(.*)", "dest": "/index.html" }
-  ]
+  ],
+  "static": {
+    "src": "dist/assets",
+    "dest": "/assets"
   }
+}
