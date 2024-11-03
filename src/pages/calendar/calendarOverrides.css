@@ -1,0 +1,106 @@
+/* Variables de color para bordes */
+:root {
+  --rs-border-primary: black;
+  --rs-border-secondary: black;
+}
+
+/* Estilo para iconos */
+.rs-icon {
+  stroke: black;
+}
+
+/* Estilo para los días en el calendario */
+.rs-calendar-table-cell-day {
+  color: black;
+}
+
+/* Estilos para el texto en el calendario */
+.texto-calendario .rs-calendar-table-cell-content,
+.texto-calendario .rs-calendar-table-cell-content .titulo-cita {
+  color: black;
+}
+
+/* Estilos para las citas en el calendario */
+.lista-citas {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.cita {
+  padding: 2px 4px;
+  margin: 1px 0;
+  border-radius: 4px;
+  font-size: 12px;
+  color: black;
+}
+
+/* Colores para cada área */
+.cita-marketing {
+  background-color: #9bc6ea; 
+}
+
+.cita-legal {
+  background-color: #69b4f1; 
+}
+
+.cita-comercio {
+  background-color: #2196f3; 
+}
+
+.cita-financiera {
+  background-color: #1972bc; 
+}
+
+/* Estilos para las opciones del SelectPicker */
+.rs-picker-menu .rs-picker-menu-item,
+.rs-picker-menu .rs-picker-menu-item-active,
+.rs-picker-menu .rs-picker-menu-item-focus {
+  color: black;
+}
+
+/* Ajustar el fondo del menú desplegable */
+.rs-picker-menu {
+  background-color: white;
+}
+
+/* Estilos para el texto seleccionado en el SelectPicker */
+.rs-picker .rs-picker-toggle .rs-picker-toggle-value {
+  color: black;
+}
+
+/* Asegurar que el placeholder del SelectPicker sea negro */
+.rs-picker-toggle-placeholder {
+  color: black;
+}
+
+/* Asegurar que el texto dentro de <strong> sea negro */
+.rs-picker-menu-item strong {
+  color: black;
+}
+
+/* Clase para el enlace "Únete aquí" en azul */
+.link-azul {
+  color: blue;
+  text-decoration: underline;
+}
+
+/* Estilos adicionales para responsividad */
+@media (max-width: 768px) {
+  .rs-calendar-table-cell-content {
+    font-size: 14px;
+  }
+
+  .rs-button {
+    width: 100%;
+  }
+
+  .rs-picker {
+    margin-bottom: 8px;
+  }
+
+  .cita {
+    padding: 4px 6px;
+    font-size: 12px;
+  }
+}
