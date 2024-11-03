@@ -1,0 +1,14 @@
+:root {
+  --rs-border-primary: black;
+  --rs-border-secondary: black;
+}
+
+.rs-icon {
+  stroke: black;
+}
+
+* {
+  color: black
+}
+
+
