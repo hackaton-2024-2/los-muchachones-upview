@@ -1,6 +1,7 @@
 import React from 'react';
-import Card from '../components/designSystem/card';
-import Button from '../components/designSystem/button';
+import Card from '../components/designStyles/card';
+import Button from '../components/designStyles/button';
+
 
 
 const Home = () => {

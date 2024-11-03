@@ -1,21 +1,11 @@
 import React from 'react';
 
 const Button = ({ text, onClick }) => {
-  const buttonStyle = {
-    backgroundColor: '#00CFFF', 
-    color: '#000', 
-    padding: '10px 30px',
-    fontSize: '12px',
-    fontWeight: 'bold',
-    borderRadius: '5px',
-    border: 'none',
-    cursor: 'pointer',
-    display: 'inline-block',
-    textAlign: 'center',
-  };
-
   return (
-    <button style={buttonStyle} onClick={onClick}>
+    <button
+      onClick={onClick}
+      className="bg-[#00CFFF] text-black px-6 py-2 text-sm font-bold rounded-md cursor-pointer inline-block text-center"
+    >
       {text}
     </button>
   );
