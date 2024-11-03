@@ -28,15 +28,28 @@
 }
 
 .cita {
-  background-color: #e0f7fa;
   padding: 2px 4px;
   margin: 1px 0;
   border-radius: 4px;
   font-size: 12px;
+  color: black;
 }
 
-.titulo-cita {
-  color: black; /* Aseguramos que el texto de la cita sea negro */
+/* Colores para cada área */
+.cita-marketing {
+  background-color: #9bc6ea; 
+}
+
+.cita-legal {
+  background-color: #69b4f1; 
+}
+
+.cita-comercio {
+  background-color: #2196f3; 
+}
+
+.cita-financiera {
+  background-color: #1972bc; 
 }
 
 /* Estilos para las opciones del SelectPicker */
@@ -64,4 +77,30 @@
 /* Asegurar que el texto dentro de <strong> sea negro */
 .rs-picker-menu-item strong {
   color: black;
+}
+
+/* Clase para el enlace "Únete aquí" en azul */
+.link-azul {
+  color: blue;
+  text-decoration: underline;
+}
+
+/* Estilos adicionales para responsividad */
+@media (max-width: 768px) {
+  .rs-calendar-table-cell-content {
+    font-size: 14px;
+  }
+
+  .rs-button {
+    width: 100%;
+  }
+
+  .rs-picker {
+    margin-bottom: 8px;
+  }
+
+  .cita {
+    padding: 4px 6px;
+    font-size: 12px;
+  }
 }

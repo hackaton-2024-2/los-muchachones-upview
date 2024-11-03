@@ -29,6 +29,11 @@ const routes = {
 		path: '/',
 		name: 'home',
 	},
+	files: {
+		id: 6,
+		path: '/files',
+		name: 'files',
+	},
 };
 
 export default routes;

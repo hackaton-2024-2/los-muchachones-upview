@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Calendar as ReactCalendar,
   Modal,
@@ -25,6 +25,20 @@ const Calendar = () => {
     { label: 'Financiera', value: 'financiera' },
   ];
 
+  // Recuperar citas guardadas en localStorage al cargar el componente
+  useEffect(() => {
+    const citasGuardadas = localStorage.getItem('citas');
+    if (citasGuardadas) {
+      const citasParsed = JSON.parse(citasGuardadas);
+      setCitas(citasParsed);
+    }
+  }, []);
+
+  // Guardar citas en localStorage cada vez que cambien
+  useEffect(() => {
+    localStorage.setItem('citas', JSON.stringify(citas));
+  }, [citas]);
+
   const abrirModal = () => {
     generarHorasAleatorias();
     setMostrarModal(true);
@@ -44,7 +58,6 @@ const Calendar = () => {
     const fechaActual = new Date();
     const diaSemana = fechaActual.getDay();
 
-    // Ajustar al siguiente día hábil si es fin de semana
     if (diaSemana === 6) {
       fechaActual.setDate(fechaActual.getDate() + 2);
     } else if (diaSemana === 0) {
@@ -58,31 +71,40 @@ const Calendar = () => {
       if (dia !== 0 && dia !== 6) {
         for (let hora = horaInicio; hora <= horaFin; hora++) {
           const horaCita = new Date(fecha);
-          horaCita.setHours(hora);
-          horaCita.setMinutes(0);
-          horaCita.setSeconds(0);
-          horaCita.setMilliseconds(0);
+          horaCita.setHours(hora, 0, 0, 0);
           horas.push({
             label: horaCita.toLocaleString(),
-            value: horaCita.toISOString(),
+            value: horaCita.getTime(), // Almacenar como timestamp
           });
         }
       }
     }
 
-    // Mezclar las horas para hacerlas aleatorias
     horas.sort(() => Math.random() - 0.5);
-    // Limitar a 10 horas aleatorias
     setHorasDisponibles(horas.slice(0, 10));
+  };
+
+  const generarLinkMeetSimulado = () => {
+    const characters = 'abcdefghijklmnopqrstuvwxyz';
+    const part1 = Array.from({ length: 3 }, () =>
+      characters[Math.floor(Math.random() * characters.length)]
+    ).join('');
+    const part2 = Array.from({ length: 4 }, () =>
+      characters[Math.floor(Math.random() * characters.length)]
+    ).join('');
+    const part3 = Array.from({ length: 3 }, () =>
+      characters[Math.floor(Math.random() * characters.length)]
+    ).join('');
+    return `https://meet.google.com/${part1}-${part2}-${part3}`;
   };
 
   const agendarCita = () => {
     if (areaSeleccionada && horaSeleccionada && tituloCita) {
-      const hora = new Date(horaSeleccionada);
       const nuevaCita = {
         area: areaSeleccionada,
-        hora: hora,
+        hora: horaSeleccionada, // Almacenamos el timestamp
         titulo: tituloCita,
+        linkMeet: generarLinkMeetSimulado(),
       };
       setCitas([...citas, nuevaCita]);
       cerrarModal();
@@ -90,18 +112,33 @@ const Calendar = () => {
   };
 
   const renderizarCelda = (fecha) => {
+    const inicioDia = new Date(fecha);
+    inicioDia.setHours(0, 0, 0, 0);
+    const finDia = new Date(fecha);
+    finDia.setHours(23, 59, 59, 999);
+
     const citasDelDia = citas.filter(
-      (c) =>
-        c.hora.getFullYear() === fecha.getFullYear() &&
-        c.hora.getMonth() === fecha.getMonth() &&
-        c.hora.getDate() === fecha.getDate()
+      (c) => c.hora >= inicioDia.getTime() && c.hora <= finDia.getTime()
     );
+
     if (citasDelDia.length > 0) {
       return (
         <ul className="lista-citas">
           {citasDelDia.map((cita, index) => (
-            <li key={index} className="cita">
+            <li
+              key={index}
+              className={`cita cita-${cita.area}`} // Asigna la clase según el área
+            >
               <span className="titulo-cita">{cita.titulo}</span>
+              <br />
+              <a
+                href={cita.linkMeet}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="link-azul"
+              >
+                Únete aquí
+              </a>
             </li>
           ))}
         </ul>
@@ -110,9 +147,9 @@ const Calendar = () => {
   };
 
   return (
-    <div className="w-full h-full flex flex-col justify-center items-center self-center">
+    <div className="w-full h-full flex flex-col justify-center items-center p-4">
       <ReactCalendar
-        className="bg-white texto-calendario"
+        className="bg-white texto-calendario w-full"
         bordered
         renderCell={renderizarCelda}
       />
@@ -120,7 +157,10 @@ const Calendar = () => {
       <Button
         appearance="primary"
         onClick={abrirModal}
-        style={{ marginTop: 20 }}
+        style={{
+          marginTop: 20,
+          width: 'fit-content',
+        }}
       >
         Agendar una cita
       </Button>
