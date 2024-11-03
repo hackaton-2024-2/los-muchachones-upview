@@ -2,7 +2,7 @@ import React from 'react';
 import Button from '../components/designStyles/button';
 import Card from '../components/designStyles/card';
 
-const App = () => {
+const Home = () => {
   return (
     <div className="relative min-h-screen flex flex-col items-center justify-center text-white bg-[#13222E]">
       <div
@@ -43,4 +43,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Home;
