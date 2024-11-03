@@ -7,8 +7,8 @@
   stroke: black;
 }
 
-* {
-  color: black
+.rs-calendar-table-cell-day {
+  color: black;
 }
 
 
