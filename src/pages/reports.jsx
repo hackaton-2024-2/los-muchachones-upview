@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend, PieChart, Pie, Cell } from 'recharts';
 import { FaArrowLeft, FaArrowRight, FaChartLine, FaBullseye, FaLightbulb, FaShieldAlt } from 'react-icons/fa';
 
 const lineChartData = [
@@ -43,37 +43,26 @@ const insights = [
   },
 ];
 
-const ProgressCircle = ({ percentage, label }) => {
-  return (
-    <div className="flex flex-col items-center">
-      <div className="relative w-20 h-20">
-        <svg className="w-full h-full">
-          <circle
-            cx="40"
-            cy="40"
-            r="35"
-            stroke="#ddd"
-            strokeWidth="5"
-            fill="transparent"
-          />
-          <circle
-            cx="40"
-            cy="40"
-            r="35"
-            stroke="#FFD700"
-            strokeWidth="5"
-            fill="transparent"
-            strokeDasharray="219.91"
-            strokeDashoffset={(1 - percentage / 100) * 219.91}
-          />
-        </svg>
-        <span className="absolute inset-0 flex items-center justify-center text-lg font-bold">
-          {percentage}%
-        </span>
+const circleData = [
+  { name: 'APALANCAMIENTO FINANCIERO', value: 85, color: '#b374de' },
+  { name: 'COSTO DE DEUDA INFERIDO', value: 10, color: '#b374de' },
+  { name: 'MARGEN EBDITA', value: 18, color: '#b374de' },
+];
+
+const CustomTooltip = ({ active, payload, label }) => {
+  if (active && payload && payload.length) {
+    return (
+      <div className="bg-white p-2 rounded shadow-md text-black">
+        <p className="font-bold">{`Año: ${label}`}</p>
+        {payload.map((entry, index) => (
+          <p key={`item-${index}`} style={{ color: entry.color }}>
+            {`${entry.name}: ${entry.value}`}
+          </p>
+        ))}
       </div>
-      <p className="text-center mt-2">{label}</p>
-    </div>
-  );
+    );
+  }
+  return null;
 };
 
 const Report = () => {
@@ -109,6 +98,29 @@ const Report = () => {
         </div>
       </div>
 
+      {/* Gráficos Circulares */}
+      <div className="flex justify-around mb-8">
+        {circleData.map((data, index) => (
+          <div key={index} className="text-center">
+            <PieChart width={100} height={100}>
+              <Pie
+                data={[{ value: data.value }, { value: 100 - data.value }]}
+                innerRadius={30}
+                outerRadius={40}
+                startAngle={90}
+                endAngle={-270}
+                dataKey="value"
+              >
+                <Cell key={`cell-${index}-filled`} fill={data.color} />
+                <Cell key={`cell-${index}-empty`} fill="#e0e0e0" />
+              </Pie>
+            </PieChart>
+            <p className="text-2xl font-bold">{data.value}%</p>
+            <p className="mt-2">{data.name}</p>
+          </div>
+        ))}
+      </div>
+
       {/* Gráfico de Líneas - ROA, ROE, Margen Neto */}
       <div className="mb-8">
         <ResponsiveContainer width="100%" height={200}>
@@ -116,7 +128,7 @@ const Report = () => {
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="year" />
             <YAxis />
-            <Tooltip />
+            <Tooltip content={<CustomTooltip />} />
             <Legend />
             <Line type="monotone" dataKey="roa" stroke="#00CFFF" strokeWidth={2} name="ROA" />
             <Line type="monotone" dataKey="roe" stroke="#0074D9" strokeWidth={2} name="ROE" />
@@ -125,32 +137,7 @@ const Report = () => {
         </ResponsiveContainer>
       </div>
 
-      {/* Gráficos circulares */}
-      <div className="flex justify-around mb-8">
-        <ProgressCircle percentage={85} label="APALANCAMIENTO FINANCIERO" />
-        <ProgressCircle percentage={10} label="COSTO DE DEUDA INFERIDO" />
-        <ProgressCircle percentage={18} label="MARGEN EBDITA" />
-      </div>
-
-      {/* Gráfico de Previsión de Ingresos */}
-      <div className="mb-8">
-        <h2 className="text-4xl font-bold mb-4">PROYECCIÓN DE INGRESOS</h2>
-        <ResponsiveContainer width="100%" height={400}>
-          <LineChart data={forecastData}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="year" />
-            <YAxis tickFormatter={(value) => new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0 }).format(value)} />
-            <Tooltip formatter={(value) => new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0 }).format(value)} />
-            <Legend />
-            <Line type="monotone" dataKey="ingresos" stroke="#8884d8" strokeWidth={2} name="Ingresos" />
-            <Line type="monotone" dataKey="prev" stroke="#82ca9d" strokeWidth={2} strokeDasharray="5 5" name="Previsión" />
-            <Line type="monotone" dataKey="limiteInferior" stroke="#d0d0d0" strokeWidth={1} strokeDasharray="3 3" name="Límite de confianza inferior" />
-            <Line type="monotone" dataKey="limiteSuperior" stroke="#4d4d4d" strokeWidth={1} strokeDasharray="3 3" name="Límite de confianza superior" />
-          </LineChart>
-        </ResponsiveContainer>
-      </div>
-
-      {/* Información de ganancias e insights */}
+      {/* Información de ganancias */}
       <div className="text-center mt-8 p-4 bg-gray-800 rounded-lg">
         <h3 className="text-2xl font-bold">GANANCIAS</h3>
         <p className="text-3xl font-bold mb-2">$393'060,40</p>
