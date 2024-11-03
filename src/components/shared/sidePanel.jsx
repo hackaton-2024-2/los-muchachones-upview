@@ -8,7 +8,7 @@ const Sidebar = () => {
     <div className="bg-[#13222E] text-white w-[250px] h-[100vh] flex flex-col items-center py-5">
       {/* Logo */}
       <div className="flex items-center gap-2 mb-10 cursor-pointer" onClick={() => navigate('/')}>
-        <img src="src/assets/Logo_upview.png" alt="Logo" className="w-8 h-8" />
+        <img src="/assets/Logo_upview.png" alt="Logo" className="w-8 h-8" />
         <h1 className="text-xl font-bold">
           <span className="text-[#16D2FC]">UP</span>VIEW
         </h1>
@@ -17,23 +17,23 @@ const Sidebar = () => {
       {/* Menu Items */}
       <div className="flex flex-col gap-8 text-lg">
         <div onClick={() => navigate('/chats')} className="flex items-center gap-4 cursor-pointer hover:bg-[#16D2FC1a] p-2 rounded-md transition duration-200 ease-in-out">
-          <img src="src/assets/chat.png" alt="Chat Icon" className="w-6 h-6" />
+          <img src="/assets/chat.png" alt="Chat Icon" className="w-6 h-6" />
           <span>Chat</span>
         </div>
         <div onClick={() => navigate('/calendar')} className="flex items-center gap-4 cursor-pointer hover:bg-[#16D2FC1a] p-2 rounded-md transition duration-200 ease-in-out">
-          <img src="src/assets/calendar.png" alt="Calendario Icon" className="w-6 h-6" />
+          <img src="/assets/calendar.png" alt="Calendario Icon" className="w-6 h-6" />
           <span>Calendario</span>
         </div>
         <div onClick={() => navigate('/learning')} className="flex items-center gap-4 cursor-pointer hover:bg-[#16D2FC1a] p-2 rounded-md transition duration-200 ease-in-out">
-          <img src="src/assets/playbutton.png" alt="Cursos Icon" className="w-6 h-6" />
+          <img src="/assets/playbutton.png" alt="Cursos Icon" className="w-6 h-6" />
           <span>Cursos</span>
         </div>
         <div onClick={() => navigate('/files')} className="flex items-center gap-4 cursor-pointer hover:bg-[#16D2FC1a] p-2 rounded-md transition duration-200 ease-in-out">
-          <img src="src/assets/folder.png" alt="Archivos Icon" className="w-6 h-6" />
+          <img src="/assets/folder.png" alt="Archivos Icon" className="w-6 h-6" />
           <span>Archivos</span>
         </div>
         <div onClick={() => navigate('/reports')} className="flex items-center gap-4 cursor-pointer hover:bg-[#16D2FC1a] p-2 rounded-md transition duration-200 ease-in-out">
-          <img src="src/assets/file.png" alt="Reportes Icon" className="w-6 h-6" />
+          <img src="/assets/file.png" alt="Reportes Icon" className="w-6 h-6" />
           <span>Reportes</span>
         </div>
       </div>
@@ -41,7 +41,7 @@ const Sidebar = () => {
       {/* User Info */}
       <div className="mt-auto flex flex-col items-center mb-5">
         <img
-          src="src/assets/user-icon-2046x2048-9pwm22pp.png"
+          src="/assets/user-icon-2046x2048-9pwm22pp.png"
           alt="User Avatar"
           className="w-8 h-8 rounded-full mb-2"
         />
