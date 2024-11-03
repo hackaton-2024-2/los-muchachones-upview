@@ -21,7 +21,6 @@ const AdButton = ({ fileName, onAddFile, onDelete }) => {
       {fileName ? (
         <>
           <span className="mt-2 text-sm font-semibold">{fileName}</span>
-          {/* Botón de eliminación con ícono de basura */}
           <button
             className="absolute bottom-2 right-2 text-red-500 text-xl"
             onClick={() => onDelete(fileName)}
@@ -75,7 +74,6 @@ const AccordionItem = ({ title }) => {
       {isOpen && (
         <div className="bg-gray-700 text-white py-4 px-6 rounded-lg mt-1 max-h-60 overflow-y-auto">
           <p>Contenido de la sección {title}</p>
-          {/* Contenedor de archivos en fila horizontal */}
           <div className="flex flex-row gap-4 flex-wrap">
             {files.map((fileName, index) => (
               <AdButton key={index} fileName={fileName} onAddFile={addFile} onDelete={deleteFile} />
@@ -90,7 +88,7 @@ const AccordionItem = ({ title }) => {
 
 const Files = () => {
   return (
-    <div className="bg-gray-900 p-8 rounded-lg w-full mx-auto">
+    <div className="bg-gray-900 p-8 rounded-lg w-full h-screen overflow-y-scroll">
       <AccordionItem title="MARKETING" />
       <AccordionItem title="FINANCIERO" />
       <AccordionItem title="LEGAL" />
