@@ -1,14 +1,67 @@
+/* Variables de color para bordes */
 :root {
   --rs-border-primary: black;
   --rs-border-secondary: black;
 }
 
+/* Estilo para iconos */
 .rs-icon {
   stroke: black;
 }
 
+/* Estilo para los días en el calendario */
 .rs-calendar-table-cell-day {
   color: black;
 }
 
+/* Estilos para el texto en el calendario */
+.texto-calendario .rs-calendar-table-cell-content,
+.texto-calendario .rs-calendar-table-cell-content .titulo-cita {
+  color: black;
+}
 
+/* Estilos para las citas en el calendario */
+.lista-citas {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.cita {
+  background-color: #e0f7fa;
+  padding: 2px 4px;
+  margin: 1px 0;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.titulo-cita {
+  color: black; /* Aseguramos que el texto de la cita sea negro */
+}
+
+/* Estilos para las opciones del SelectPicker */
+.rs-picker-menu .rs-picker-menu-item,
+.rs-picker-menu .rs-picker-menu-item-active,
+.rs-picker-menu .rs-picker-menu-item-focus {
+  color: black;
+}
+
+/* Ajustar el fondo del menú desplegable */
+.rs-picker-menu {
+  background-color: white;
+}
+
+/* Estilos para el texto seleccionado en el SelectPicker */
+.rs-picker .rs-picker-toggle .rs-picker-toggle-value {
+  color: black;
+}
+
+/* Asegurar que el placeholder del SelectPicker sea negro */
+.rs-picker-toggle-placeholder {
+  color: black;
+}
+
+/* Asegurar que el texto dentro de <strong> sea negro */
+.rs-picker-menu-item strong {
+  color: black;
+}
