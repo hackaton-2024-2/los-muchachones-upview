@@ -1,4 +1,4 @@
-export { default as Calendar } from './calendar';
+export { default as Calendar } from './calendar/calendar';
 export { default as Chats } from './chats';
 export { default as Learning } from './learning';
 export { default as Login } from './login';
