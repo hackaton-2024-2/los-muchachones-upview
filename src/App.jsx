@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import { routes } from './utils/'
 
-import { Login, Calendar, Chats, Learning, Reports, PageNotFound, Home, Files, Profile } from './pages';
+import { Login, Calendar, Chats, Learning, Reports, PageNotFound, Home, Files, Profile, Goals } from './pages';
 import { ProtectedRoute, UnprotectedRoute, SidePanel } from './components/'
 
 function App() {
@@ -24,7 +24,8 @@ function App() {
           <Route exact path={routes.home.path} element={addSidePanelToComponent(<Home />)}></Route>
           <Route exact path={routes.files.path} element={addSidePanelToComponent(<Files />)}></Route>
           <Route exact path={routes.profile.path} element={addSidePanelToComponent(<Profile />)}></Route>
-        </Route>
+          <Route exact path={routes.goals.path} element={addSidePanelToComponent(<Goals />)}></Route>
+          </Route>
 
         <Route path='*' element={<PageNotFound />} />
       </Routes>

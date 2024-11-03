@@ -39,6 +39,11 @@ const routes = {
 		path: '/profile',
 		name: 'profile',
 	},
+	goals: {
+		id: 8,
+		path: '/goals',
+		name: 'goals',
+	},
 };
 
 export default routes;

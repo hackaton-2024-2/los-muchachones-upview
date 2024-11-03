@@ -36,20 +36,24 @@ const Sidebar = () => {
           <img src="/assets/file.png" alt="Reportes Icon" className="w-6 h-6" />
           <span>Reportes</span>
         </div>
+        <div onClick={() => navigate('/goals')} className="flex items-center gap-4 cursor-pointer hover:bg-[#16D2FC1a] p-2 rounded-md transition duration-200 ease-in-out">
+          <img src="/assets/goal.png" alt="Objetivos Icon" className="w-6 h-6" />
+          <span>Objetivos</span>
+        </div>
       </div>
 
       {/* User Info */}
       <div className="mt-auto flex flex-col items-center mb-5">
         <div className="flex items-center gap-2">
           <img
-            src="public\assets\profile.png"
+            src="public/assets/profile.png"
             alt="User Avatar"
             className="w-8 h-8 rounded-full"
           />
-          <span onClick={() => navigate('/profile')} className="text-lg font-semibold hover:underline cursor-pointer" >Alexa Romero</span>
+          <span onClick={() => navigate('/profile')} className="text-lg font-semibold hover:underline cursor-pointer">Alexa Romero</span>
         </div>
-      </div >
-    </div >
+      </div>
+    </div>
   );
 };
 

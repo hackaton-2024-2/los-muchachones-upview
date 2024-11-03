@@ -7,3 +7,4 @@ export { default as PageNotFound } from './404';
 export { default as Home } from './home';
 export { default as Files } from './files';
 export { default as Profile } from './profile';
+export { default as Goals } from './goals';
