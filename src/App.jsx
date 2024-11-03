@@ -9,7 +9,7 @@ function App() {
   const addSidePanelToComponent = (component) => <SidePanel>{component}</SidePanel>
 
 
-  return <div className='w-[100vw] h-[100vh] bg-darkGray'>
+  return <div className='w-[100vw] h-[100vh] bg-darkGray overflow-scroll'>
     <BrowserRouter>
       <Routes>
         <Route element={<UnprotectedRoute />}>
