@@ -49,6 +49,27 @@ const circleData = [
   { name: 'MARGEN EBDITA', value: 18, color: '#b374de' },
 ];
 
+const traceabilityData = [
+  { date: '2024-01-10', event: 'Reunión de planificación estratégica' },
+  { date: '2024-02-05', event: 'Subida de documentos financieros' },
+  { date: '2024-03-12', event: 'Generación de reporte semanal de actividades' },
+  { date: '2024-04-20', event: 'Revisión de resultados del Q1' },
+  { date: '2024-05-15', event: 'Subida de acta de reunión mensual' },
+];
+
+const meetingMinutes = {
+  '2024-01-10': {
+    tema: 'Planificación Estratégica 2024',
+    tareas: ['Definir objetivos trimestrales', 'Asignar responsables para cada área', 'Establecer métricas de rendimiento'],
+    otrosDatos: 'Participantes: Directores de cada área, CEO',
+  },
+  '2024-02-05': {
+    tema: 'Actualización de Documentos Financieros',
+    tareas: ['Subir reporte financiero Q4 2023', 'Revisar ratios financieros actuales', 'Preparar presentación para stakeholders'],
+    otrosDatos: 'Participantes: Equipo financiero, CFO',
+  },
+};
+
 const CustomTooltip = ({ active, payload, label }) => {
   if (active && payload && payload.length) {
     return (
@@ -67,6 +88,7 @@ const CustomTooltip = ({ active, payload, label }) => {
 
 const Report = () => {
   const [currentInsight, setCurrentInsight] = useState(0);
+  const [selectedDate, setSelectedDate] = useState(null);
 
   const handleNextInsight = () => {
     setCurrentInsight((prev) => (prev + 1) % insights.length);
@@ -74,6 +96,10 @@ const Report = () => {
 
   const handlePrevInsight = () => {
     setCurrentInsight((prev) => (prev - 1 + insights.length) % insights.length);
+  };
+
+  const handleSelectDate = (date) => {
+    setSelectedDate(date);
   };
 
   return (
@@ -145,6 +171,49 @@ const Report = () => {
         <p className="mt-4">
           Las ganancias siguen presentando un crecimiento en comparación a sus otros periodos. Los ingresos proyectados alcanzarán aproximadamente $1,300 millones en 2025, con un intervalo de confianza entre $1,250 millones y $1,350 millones.
         </p>
+      </div>
+
+     {/* Apartado de Trazabilidad */}
+    <div className="mt-12 mb-8 p-4 rounded-lg h-48 overflow-y-auto  border border-black">
+      <h3 className="text-2xl font-bold mb-4">Trazabilidad del Emprendimiento</h3>
+      <ul>
+        {traceabilityData.map((item, index) => (
+          <li key={index} className="mb-2">{`${item.date}: ${item.event}`}</li>
+        ))}
+      </ul>
+    </div>
+
+
+
+
+      {/* Dropdown de Actas de Reuniones */}
+      <div className="mb-8">
+        <h3 className="text-2xl font-bold mb-4">Actas de Reuniones</h3>
+        <select
+          onChange={(e) => handleSelectDate(e.target.value)}
+          value={selectedDate || 'Seleccione una fecha'}
+          className="bg-gray-800 text-white p-2 rounded"
+        >
+          <option disabled>Seleccione una fecha</option>
+          {Object.keys(meetingMinutes).map((date) => (
+            <option key={date} value={date}>
+              {date}
+            </option>
+          ))}
+        </select>
+        {selectedDate && (
+          <div className="mt-4 bg-gray-900 p-4 rounded">
+            <h4 className="text-xl font-bold">Acta del {selectedDate}</h4>
+            <p><strong>Tema:</strong> {meetingMinutes[selectedDate].tema}</p>
+            <p><strong>Tareas:</strong></p>
+            <ul>
+              {meetingMinutes[selectedDate].tareas.map((tarea, index) => (
+                <li key={index}>- {tarea}</li>
+              ))}
+            </ul>
+            <p><strong>Otros Datos:</strong> {meetingMinutes[selectedDate].otrosDatos}</p>
+          </div>
+        )}
       </div>
 
       {/* Apartado de Insights dinámicos */}
