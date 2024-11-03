@@ -1,5 +1,7 @@
 import React from 'react';
 
+
+//delete photo
 const FileCard = ({ title, onClick }) => {
   return (
     <div
