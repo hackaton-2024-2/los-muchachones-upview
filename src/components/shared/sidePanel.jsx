@@ -40,13 +40,14 @@ const Sidebar = () => {
 
       {/* User Info */}
       <div className="mt-auto flex flex-col items-center mb-5">
-        <img
-          src="src/assets/user-icon-2046x2048-9pwm22pp.png"
-          alt="User Avatar"
-          className="w-8 h-8 rounded-full mb-2"
-        />
-        <span>Alexa Romero</span>
-        <a href="#" className="text-blue-300 text-sm">Más info</a>
+        <div className="flex items-center gap-2">
+          <img
+            src="src/assets/user-icon-2046x2048-9pwm22pp.png"
+            alt="User Avatar"
+            className="w-8 h-8 rounded-full"
+          />
+          <span className="text-lg font-semibold hover:underline cursor-pointer">Alexa Romero</span>
+        </div>
       </div>
     </div>
   );
