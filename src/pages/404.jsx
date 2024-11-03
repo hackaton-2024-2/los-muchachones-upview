@@ -1,4 +1,3 @@
-import {ChatMessage} from '../components'
 const PageNotFound = () => {
   return <div>404</div>
 }
